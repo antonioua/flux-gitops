@@ -4,5 +4,5 @@ metadata:
   name: apps-repo
   namespace: flux-system
 spec:
-  url: http://ac-chartmuseum.chartmuseum.svc.cluster.local:8080
+  url: http://ac-chartmuseum.infra.svc.cluster.local:8080
   interval: 10s
