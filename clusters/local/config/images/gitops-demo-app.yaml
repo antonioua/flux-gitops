@@ -1,0 +1,28 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: gitops-demo-app
+  namespace: flux-system
+spec:
+  image: xdesigns/gitops-demo-app
+  interval: 10s
+  # For private registry we need to create a Secret with credentials
+  # See details https://fluxcd.io/flux/guides/image-update/#configure-image-scanning
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: gitops-demo-app
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: gitops-demo-app
+    namespace: flux-system
+  # https://fluxcd.io/flux/guides/sortable-image-tags/
+  filterTags:
+    pattern: '^b[0-9]+.[0-9]+.(?P<id>[0-9]+)'
+    extract: '$id'
+  policy:
+    numerical:
+      order: asc

@@ -1,0 +1,28 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: gitops-demo-app
+  namespace: my-test
+spec:
+  maxHistory: 10
+  chart:
+    spec:
+      chart: gitops-demo-app
+      sourceRef:
+        kind: HelmRepository
+        name: apps-repo
+        namespace: flux-system
+  interval: 10s
+  install:
+    remediation:
+      retries: 3
+  releaseName: gitops-demo-app
+  #  chart:
+  #    spec:
+  #      version: ">=1.0.0-alpha"
+  test:
+    enable: false
+  # Default values https://github.com/antonioua/gitops-demo-app/blob/main/helm-charts/gitops-demo-app/values.yaml
+  values:
+    image:
+      tag: "latest" # {"$imagepolicy": "flux-system:gitops-demo-app-policy"}
