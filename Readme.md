@@ -25,7 +25,7 @@ export GITHUB_USER="X"
 flux bootstrap github \
   --components-extra=image-reflector-controller,image-automation-controller \
   --owner=$GITHUB_USER \
-  --repository=flux \
+  --repository=flux-gitops \
   --path=clusters/local \
   --read-write-key \
   --personal
@@ -35,6 +35,13 @@ Flux will generate ssh keypair, create Secret and add public part to deploy keys
 We use `--read-write-key` option to allow flux (ImageAutomation controller) to change resources in our flux repo.
 
 ## Setup Kpack
+
+Install Kpack cli. See docs for cli commands https://github.com/vmware-tanzu/kpack-cli/blob/main/docs/kp.md
+```bash
+brew tap vmware-tanzu/kpack-cli
+brew install kp
+```
+
 Todo...
 
 ## Helm chart
@@ -44,7 +51,7 @@ Build and push helm chart to chartmuseum:
 git clone git@github.com:antonioua/gitops-demo-app.git
 cd gitops-demo-app
 helm package ./helm-charts/gitops-demo-app/ --version 1.0.0
-kubectl port-forward -n chartmuseum svc/ac-chartmuseum 8080:8080
+kubectl port-forward -n infra svc/ac-chartmuseum 8080:8080
 curl --data-binary "@gitops-demo-app-1.0.0.tgz" http://localhost:8080/api/charts
 ```
 
