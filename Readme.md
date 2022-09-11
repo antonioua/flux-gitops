@@ -6,18 +6,16 @@
 
 Exec into worker node and `mkdir /mnt/chartmuseum` for `chartmuseum` PV
 
-Obtain node labels and set `nodeAffinity` for `infrastructure/chartmuseum/persistent-volume.yaml`
+Obtain node labels and set `nodeAffinity` for `infra/chartmuseum/persistent-volume.yaml`
 
 ## Setup Flux
-
-Flux gitops stack and Kpack will be installed automatically.
 
 Install flux2 cli
 ```bash
 brew install fluxcd/tap/flux
 ```
 
-Bootstrap flux for local cluster:
+Bootstrap Flux for local cluster
 ```bash
 export GITHUB_TOKEN="X"
 export GITHUB_USER="X"
@@ -31,12 +29,16 @@ flux bootstrap github \
   --personal
 ```
 
+Flux Gitops stack and Kpack will be installed automatically.
+
 Flux will generate ssh keypair, create Secret and add public part to deploy keys of you github repo using your personal access token.
-We use `--read-write-key` option to allow flux (ImageAutomation controller) to change resources in our flux repo.
+
+We use `--read-write-key` option to allow Flux (ImageAutomation controller) to change resources in our flux repo.
 
 ## Setup Kpack
 
 Install Kpack cli. See docs for cli commands https://github.com/vmware-tanzu/kpack-cli/blob/main/docs/kp.md
+
 ```bash
 brew tap vmware-tanzu/kpack-cli
 brew install kp
@@ -72,9 +74,8 @@ Trigger reconcile of flux controllers manually:
 ```bash
 flux reconcile kustomization flux-system --with-source # Tell Flux to pull and apply the changes
 flux reconcile source git flux-system
-flux reconcile kustomization apps
-flux reconcile kustomization infrastructure # if you just want to update infra
-flux reconcile image update gitops-demo-app-rollout -n flux-system # run image automation
+flux reconcile kustomization infra
+flux reconcile image update gitops-demo-app -n flux-system
 ```
 
 Check controllers statuses
@@ -82,7 +83,7 @@ Check controllers statuses
 flux get sources all
 flux get sources git # kubectl get GitRepository -A
 flux get kustomization # kubectl get kustomizations.kustomize.toolkit.fluxcd.io -A
-flux get image all -A # get policy repo and automation statuses
+flux get image all -A # get policy, repos and automation statuses
 flux get image repository -A # kubectl get ImageRepository -A
 flux get image policy -A # kubectl get ImagePolicy -A
 flux get images update -A # kubectl get ImageUpdateAutomation -A
@@ -98,17 +99,10 @@ kp image status gitops-demo-app -n build
 kp build logs gitops-demo-app -n build
 ```
 
-Observe API resource fields
+Other Flux commands:
 ```bash
-kubectl explain ImagePolicy.spec.policy
-```
-
-Other flux commands:
-```bash
-flux suspend image repository gitops-demo-app
-flux uninstall --namespace=flux-system
 ```
 
 ## Todo
 - Tag images in kpack like ${GIT_BRANCH}-${GIT_SHA:0:7}-$(date +%s) # main-2d3fcbd-1611906956
-- Optimize directory structure as per example: https://github.com/fluxcd/flux2-kustomize-helm-example
+- Optimize directory structure in FluxCD. See https://github.com/fluxcd/flux2-kustomize-helm-example
