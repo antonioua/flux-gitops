@@ -103,10 +103,12 @@ Observe API resource fields
 kubectl explain ImagePolicy.spec.policy
 ```
 
-Other flux cmds:
+Other flux commands:
 ```bash
 flux suspend image repository gitops-demo-app
+flux uninstall --namespace=flux-system
 ```
 
 ## Todo
-Tag images in kpack like ${GIT_BRANCH}-${GIT_SHA:0:7}-$(date +%s) # main-2d3fcbd-1611906956
+- Tag images in kpack like ${GIT_BRANCH}-${GIT_SHA:0:7}-$(date +%s) # main-2d3fcbd-1611906956
+- Optimize directory structure as per example: https://github.com/fluxcd/flux2-kustomize-helm-example
