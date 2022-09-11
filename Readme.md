@@ -42,7 +42,18 @@ brew tap vmware-tanzu/kpack-cli
 brew install kp
 ```
 
-Todo...
+Create ImagePull Secret for dockerhub registry
+```bash
+export REGISTRY_USER="X"
+export REGISTRY_PASS="X"
+export REGISTRY_URL=https://index.docker.io/v1/
+
+kubectl create secret docker-registry dockerhub-credentials \
+--docker-username=$REGISTRY_USER \
+--docker-password=$REGISTRY_PASS \
+--docker-server=$REGISTRY_URL \
+--namespace build
+```
 
 ## Helm chart
 
