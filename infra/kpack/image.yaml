@@ -1,0 +1,15 @@
+apiVersion: kpack.io/v1alpha2
+kind: Image
+metadata:
+  name: gitops-demo-app
+  namespace: build
+spec:
+  tag: xdesigns/gitops-demo-app
+  serviceAccountName: dockerhub-service-account
+  builder:
+    name: my-go-builder
+    kind: Builder
+  source:
+    git:
+      url: https://github.com/antonioua/gitops-demo-app
+      revision: main

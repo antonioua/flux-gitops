@@ -1,0 +1,15 @@
+apiVersion: kpack.io/v1alpha2
+kind: ClusterStore
+metadata:
+  name: default
+  namespace: build
+spec:
+  sources:
+  - image: gcr.io/paketo-buildpacks/java
+  - image: gcr.io/paketo-buildpacks/graalvm
+  - image: gcr.io/paketo-buildpacks/java-azure
+  - image: gcr.io/paketo-buildpacks/nodejs
+  - image: gcr.io/paketo-buildpacks/dotnet-core
+  - image: gcr.io/paketo-buildpacks/go
+  - image: gcr.io/paketo-buildpacks/php
+  - image: gcr.io/paketo-buildpacks/nginx
