@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
 - https://github.com/pivotal/kpack/releases/download/v0.7.0/release-0.7.0.yaml
 - namespace.yaml
+- serviceaccount.yaml
