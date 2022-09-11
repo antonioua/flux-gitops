@@ -2,9 +2,9 @@
 
 ## Setup local k8s cluster with rancher desktop and K3s
 
-## Use Lens
+## Setup worker node
 
-Exec into worker node and `mkdir /mnt/chartmuseum` for `chartmuseum` PV
+Use Lens to exec into worker node and `mkdir /mnt/chartmuseum` for chartmuseum PV
 
 Obtain node labels and set `nodeAffinity` for `infra/chartmuseum/persistent-volume.yaml`
 
