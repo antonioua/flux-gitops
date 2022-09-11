@@ -17,9 +17,6 @@ spec:
     remediation:
       retries: 3
   releaseName: gitops-demo-app
-  #  chart:
-  #    spec:
-  #      version: ">=1.0.0-alpha"
   test:
     enable: false
   # Default values https://github.com/antonioua/gitops-demo-app/blob/main/helm-charts/gitops-demo-app/values.yaml

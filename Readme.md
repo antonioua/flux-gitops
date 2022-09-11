@@ -109,4 +109,4 @@ flux suspend image repository gitops-demo-app
 ```
 
 ## Todo
-tag images in kpack like ${GIT_BRANCH}-${GIT_SHA:0:7}-$(date +%s) # main-2d3fcbd-1611906956
+Tag images in kpack like ${GIT_BRANCH}-${GIT_SHA:0:7}-$(date +%s) # main-2d3fcbd-1611906956
