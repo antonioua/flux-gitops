@@ -72,8 +72,8 @@ curl --data-binary "@gitops-demo-app-1.0.0.tgz" http://localhost:8080/api/charts
 
 Trigger reconcile of flux controllers manually:
 ```bash
-flux reconcile kustomization flux-system --with-source # Tell Flux to pull and apply the changes
 flux reconcile source git flux-system
+flux reconcile kustomization flux-system --with-source # Tell Flux to pull and apply the changes
 flux reconcile kustomization infra
 flux reconcile image update gitops-demo-app -n flux-system
 ```
@@ -97,10 +97,6 @@ kp clusterstack status base
 kp builder status my-go-builder -n build
 kp image status gitops-demo-app -n build
 kp build logs gitops-demo-app -n build
-```
-
-Other Flux commands:
-```bash
 ```
 
 ## Todo
