@@ -25,4 +25,4 @@ spec:
     extract: '$id'
   policy:
     numerical:
-      order: desc
+      order: des
