@@ -75,7 +75,7 @@ Trigger reconcile of flux controllers manually:
 flux reconcile source git flux-system
 flux reconcile kustomization flux-system --with-source # Tell Flux to pull and apply the changes
 flux reconcile kustomization infra
-flux reconcile image update gitops-demo-app -n flux-system
+flux reconcile image update flux-system -n flux-system
 ```
 
 Check controllers statuses
