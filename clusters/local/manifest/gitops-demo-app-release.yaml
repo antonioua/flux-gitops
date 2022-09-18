@@ -22,4 +22,4 @@ spec:
   # Default values https://github.com/antonioua/gitops-demo-app/blob/main/helm-charts/gitops-demo-app/values.yaml
   values:
     image:
-      tag: "b6.20220911.212315" # {"$imagepolicy": "flux-system:gitops-demo-app:tag"}
+      tag: "b6.20220918.071531" # {"$imagepolicy": "flux-system:gitops-demo-app:tag"}
