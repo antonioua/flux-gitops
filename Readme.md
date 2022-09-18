@@ -101,4 +101,6 @@ kp build logs gitops-demo-app -n build
 
 ## Todo
 - Tag images in kpack like ${GIT_BRANCH}-${GIT_SHA:0:7}-$(date +%s) # main-2d3fcbd-1611906956
+kpack controller API https://github.com/pivotal/kpack/blob/main/pkg/apis/build/v1alpha2/image_types.go#L55
+- Figure out where kpack stores image tag build history, bc when you recreate k9s cluster it statrs from b1.x.x
 - Optimize directory structure in FluxCD. See https://github.com/fluxcd/flux2-kustomize-helm-example
