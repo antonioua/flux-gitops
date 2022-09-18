@@ -21,7 +21,7 @@ spec:
     namespace: flux-system
   # https://fluxcd.io/flux/guides/sortable-image-tags/
   filterTags:
-    pattern: '^b(?P<id>[0-9])+'
+    pattern: '^b(?P<id>[0-9]+).'
     extract: '$id'
   policy:
     numerical:

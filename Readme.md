@@ -92,7 +92,7 @@ flux get helmreleases -A # kubectl get HelmRelease -A
 
 Check Kpack controllers statuses
 ```bash
-kp clusterstore status default
+kp clusterstore status defaut
 kp clusterstack status base
 kp builder status my-go-builder -n build
 kp image status gitops-demo-app -n build
